@@ -14,8 +14,8 @@ var expectedQuery = 'INSERT INTO organisations ('
   + 'VALUES (\'Uniclover\', \'www.aurl.com\', \'We are a wonderful company\', '
   + '\'true\');';
 
-test('addUser query string', function (t) {
+test('addOrganisation query string', function (t) {
   t.equal(addOrganisation(orgObj), expectedQuery,
-    'addUser function takes an object and outputs a valid query string');
+    'addOrganisation function takes an object and outputs a valid string');
   t.end();
 });
