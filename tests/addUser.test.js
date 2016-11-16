@@ -15,11 +15,11 @@ var userObj = {
   active: true
 };
 
-var query = 'INSERT INTO people (
-  first_name, last_name, user_type, email, phone, password, org_id,
-  job_title, last_login, active
-  ) VALUES (\'J\', \'M\', \'admin\', \'ja@mu.co\', \'\', \'Hello1\', null,
-  \'Developer\', \'\', \'true\')';
+var query = 'INSERT INTO people ('
+  + 'first_name, last_name, user_type, email, phone, password, org_id, '
+  + 'job_title, last_login, active'
+  + ') VALUES (\'J\', \'M\', \'admin\', \'ja@mu.co\', \'\', \'Hello1\', '
+  + '\'null\', \'Developer\', \'\', \'true\');';
 
 test('addUser query string', function (t) {
   t.equal(addUser(userObj), query,

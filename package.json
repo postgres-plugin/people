@@ -1,11 +1,10 @@
 {
-  "name": "Challenges",
+  "name": "pg-people",
   "version": "1.0.0",
-  "description": "This document is a draft which contains ideas and first thoughts on how to build a reusable challenges-system.",
+  "description": "People database in postgres.",
   "main": "index.js",
   "scripts": {
     "start": "node ./example/start.js",
-    "db": "node lib/create-table.js",
     "startmon": "nodemon ./example/start.js",
     "lint": "node_modules/.bin/goodparts .",
     "coverage": "istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
@@ -13,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/postgres-plugin/Challenges.git"
+    "url": "git+https://github.com/postgres-plugin/people.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/postgres-plugin/issues"
+    "url": "https://github.com/postgres-plugin/people/issues"
   },
-  "homepage": "https://github.com/postgres-plugin/Challenges#readme",
+  "homepage": "https://github.com/postgres-plugin/people#readme",
   "dependencies": {
     "env2": "^2.1.1",
     "hapi": "^15.2.0",
