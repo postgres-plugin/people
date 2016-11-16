@@ -51,10 +51,11 @@ function init (config, callback) {
         method: 'GET',
         path: '/orgs/{id}',
         handler: function (request, reply) {
-          request.getOrganisation(request.params.id, function (error, response) {
-            Hoek.assert(!error, 'Get Org failed');
-            reply(response);
-          });
+          request.getOrganisation(request.params.id,
+            function (error, response) {
+              Hoek.assert(!error, 'Get Org failed');
+              reply(response);
+            });
         }
       }
     ]);
