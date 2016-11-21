@@ -3,8 +3,7 @@
 /**
 * Create default config or use the environment variables if defined
 */
-var env = require('env2')('.env'); //eslint-disable-line
-
+var env = require('env2')('.env'); // eslint-disable-line
 
 // DEFAULTS
 var defaults = {
@@ -24,9 +23,9 @@ var defaults = {
 var test = {
   port: 0,
   pg: {
-    user: 'postgres',
-    database: 'ce100_test',
-    password: '',
+    user: process.env.PG_USER_TEST || 'postgres',
+    database: process.env.PG_DATABASE_TEST || 'ce100_test',
+    password: process.env.PG_PASSWORD_TEST || '',
     host: 'localhost',
     port: 5432,
     max: 10,
@@ -42,4 +41,4 @@ function setUpConfig () {
   return defaults;
 }
 
-module.exports = setUpConfig;
+module.exports = setUpConfig();

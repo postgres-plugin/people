@@ -2,7 +2,7 @@
 
 var Hoek = require('hoek');
 var init = require('./server.js');
-var config = require('../config/load-config.js')();
+var config = require('../config/load-config.js');
 
 init(config, function (err, server) { // eslint-disable-line
   Hoek.assert(!err, err);
