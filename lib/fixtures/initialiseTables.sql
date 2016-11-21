@@ -1,7 +1,3 @@
--- Delete tables
-DROP TABLE IF EXISTS people;
-DROP TABLE IF EXISTS organisations;
-
 -- Create table
 CREATE TABLE IF NOT EXISTS organisations (
   id SERIAL PRIMARY KEY,

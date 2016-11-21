@@ -36,6 +36,7 @@ test('Get all the people', function (t) {
         t.deepEqual(JSON.parse(res.payload), expected, 'Get all users ok');
         t.end();
         server.stop();
+        // delete data from database
         return resetPeople(pool, function (error) { //eslint-disable-line
           t.ok(!error, 'no error when inserting people in table');
 
