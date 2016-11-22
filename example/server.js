@@ -15,7 +15,13 @@ function init (config, callback) {
 
   server.register([{
     register: register,
-    options: { pool: pool }
+    options: {
+      pool: pool,
+      resetTables: process.env.RESET_TABLES_PEOPLE || false, // reset with content passed in the options, change the env to true and restart to add content
+      people: [],
+      organisations: [],
+      tags_organisations: []
+    }
   }], function (err) {
     if (err) {
       return callback(err);
