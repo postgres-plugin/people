@@ -19,7 +19,7 @@ test('Convert array of people to sql query', function (t) {
   ];
   var query = peopleData(people);
   var expected = "INSERT INTO people "
-    + "(first_name, last_name, user_type, email, phone, password, org_id, active)"
+    + "(first_name, last_name, user_type, email, phone, password, org_id, job_title, active)"
     + " VALUES "
     + "('bob', 'bobby', 'admin', 'bob.bobby@bob.com', '007', '123pwd', 1, 'user', true);";
 

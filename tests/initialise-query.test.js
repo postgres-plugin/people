@@ -63,23 +63,9 @@ test('Create intialise query with reset = true', function (t) {
   };
 
   var query = initialiseQuery(options);
-  var orgsExpected = 'INSERT INTO organisations '
-      + '(name, logo_url, mission_statement, active)'
-      + ' VALUES '
-      + '(\'org1\', \'org-logo\', \'do some good stuff\', true);';
 
-  var peopleExpected = "INSERT INTO people "
-    + "(first_name, last_name, user_type, email, phone, password, org_id, active)"
-    + " VALUES "
-    + "('bob', 'bobby', 'admin', 'bob.bobby@bob.com', '007', '123pwd', 1, 'user', true);";
-
-  var tagsOrgsExpected = 'INSERT INTO tags_organisations '
-    + '(tags_id, organisations_id)'
-    + ' VALUES '
-    + '(1, 2),(3, 4);';
-
-  var expected = dropTables + createTables + orgsExpected + peopleExpected + tagsOrgsExpected;
-
-  t.equal(query, expected, 'Initialise query with reset true ok');
+  t.equal(query.indexOf('-- Delete table') > -1, true, 'The tables are deleted');
+  t.equal(query.indexOf('-- Create table') > -1, true, 'The tables are created');
+  t.equal(query.indexOf('INSERT INTO organisations') > -1, true, 'Values inserted');
   t.end();
 });
