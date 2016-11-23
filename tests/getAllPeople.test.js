@@ -9,6 +9,7 @@ var resetPeople = require('./helpers/reset-people.js');
 test('Get all the people', function (t) {
   init(config, function (err, server, pool) {
     if (err) {
+      console.log('error initialise server', err);
       return t.fail();
     }
 
