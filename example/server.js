@@ -55,6 +55,15 @@ function init (config, callback) {
               reply(response);
             });
           }
+        },
+        {
+          method: 'GET',
+          path: '/getbyemail',
+          handler: function (request, reply) {
+            request.pg.people.getByEmail('bob.bobby@bob.com', function (error, response) { // eslint-disable-line
+              reply(response);
+            });
+          }
         }
       ]);
 
