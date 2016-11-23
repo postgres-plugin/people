@@ -17,7 +17,7 @@ function init (config, callback) {
     register: register,
     options: {
       pool: pool,
-      resetTables: process.env.RESET_TABLES_PEOPLE || false, // reset with content passed in the options, change the env to true and restart to add content
+      reset: Boolean(process.env.RESET_TABLES_PEOPLE), // reset with content passed in the options, change the env to true and restart to add content
       people: [],
       organisations: [],
       tags_organisations: []
