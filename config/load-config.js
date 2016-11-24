@@ -10,7 +10,7 @@ var defaults = {
   port: 3000,
   pg: {
     user: process.env.PG_USER || 'postgres',
-    database: process.env.PG_DATABASE || 'ce100',
+    database: process.env.PG_DATABASE || 'people',
     password: process.env.PG_PASSWORD || '',
     host: 'localhost',
     port: 5432,
@@ -24,7 +24,7 @@ var test = {
   port: 0,
   pg: {
     user: process.env.PG_USER_TEST || 'postgres',
-    database: process.env.PG_DATABASE_TEST || 'ce100_test',
+    database: process.env.PG_DATABASE_TEST || 'people_test',
     password: process.env.PG_PASSWORD_TEST || '',
     host: 'localhost',
     port: 5432,

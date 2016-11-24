@@ -2,7 +2,7 @@
 CREATE TABLE IF NOT EXISTS organisations (
   id SERIAL PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
-  logo_url VARCHAR(100),
+  logo_url TEXT,
   mission_statement VARCHAR(200),
   active BOOLEAN NOT NULL
 );
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS people (
   password VARCHAR(100) NOT NULL,
   org_id INTEGER REFERENCES organisations (id),
   job_title VARCHAR(80),
-  last_login DATE,
+  last_login BIGINT,
   active BOOLEAN NOT NULL
 );
 

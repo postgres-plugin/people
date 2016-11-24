@@ -8,6 +8,7 @@
     "password": "123pwd",
     "org_id": null,
     "job_title": "Developer",
+    "last_login": 1479491066104,
     "active": true
   },
   {
@@ -19,6 +20,7 @@
     "password": "007",
     "org_id": 1,
     "job_title": "spy",
+    "last_login": 1479491066104,
     "active": true
   }
 ]
