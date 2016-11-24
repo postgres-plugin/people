@@ -4,6 +4,8 @@ var Hapi = require('hapi');
 var pg = require('pg');
 var register = require('../lib/index.js');
 var tagsSystem = require('tags-system');
+var peopleData = require('./data/people.json');
+var organisationsData = require('./data/organisations.json');
 
 function init (config, callback) {
   var server = new Hapi.Server();
@@ -12,6 +14,13 @@ function init (config, callback) {
     tags: [],
     categories: [],
     pool: pool
+  };
+  var optionsPeople = {
+    pool: pool,
+    reset: Boolean(process.env.RESET_TABLES_PEOPLE), // reset with content passed in the options, change the env to true and restart to add content
+    people: peopleData,
+    organisations: organisationsData,
+    tags_organisations: []
   };
 
   pool.on('error', function () {
@@ -31,13 +40,7 @@ function init (config, callback) {
 
     return server.register([{
       register: register,
-      options: {
-        pool: pool,
-        reset: Boolean(process.env.RESET_TABLES_PEOPLE), // reset with content passed in the options, change the env to true and restart to add content
-        people: [],
-        organisations: [],
-        tags_organisations: []
-      }
+      options: optionsPeople
     }], function (err) {
       if (err) {
         return callback(err);
@@ -49,6 +52,33 @@ function init (config, callback) {
           path: '/people',
           handler: function (request, reply) {
             request.pg.people.getAllPeople(function (error, response) { // eslint-disable-line
+              reply(response);
+            });
+          }
+        },
+        {
+          method: 'GET',
+          path: '/getbyemail',
+          handler: function (request, reply) {
+            request.pg.people.getByEmail('bob.bobby@bob.com', function (error, response) { // eslint-disable-line
+              reply(response);
+            });
+          }
+        },
+        {
+          method: 'GET',
+          path: '/addOrgName/{name}',
+          handler: function (request, reply) {
+            request.pg.people.addOrgName(request.params.name, function (error, response) { // eslint-disable-line
+              reply('error' + error + 'response' + response);
+            });
+          }
+        },
+        {
+          method: 'GET',
+          path: '/getActiveOrgs',
+          handler: function (request, reply) {
+            request.pg.people.getActiveOrgs(function (error, response) { // eslint-disable-line
               reply(response);
             });
           }

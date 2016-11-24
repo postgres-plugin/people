@@ -13,9 +13,10 @@ test('Get all the people', function (t) {
 
     server.inject({
       method: 'GET',
-      url: '/people'
+      url: '/getbyemail'
     }, function (res) {
-      t.equal(JSON.parse(res.payload).length, 2, 'Return 2 users');
+      t.equal(JSON.parse(res.payload).length, 1, 'Get a unique person')
+      t.equal(JSON.parse(res.payload)[0].first_name, 'Bob', 'The person is Bob');
       t.end();
       pool.end()
       server.stop()
