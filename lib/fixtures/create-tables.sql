@@ -21,3 +21,8 @@ CREATE TABLE IF NOT EXISTS people (
   last_login DATE,
   active BOOLEAN NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS tags_organisations (
+ tags_id INTEGER REFERENCES tags (id),
+ organisations_id INTEGER REFERENCES organisations (id)
+);
