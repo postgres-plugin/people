@@ -64,6 +64,24 @@ function init (config, callback) {
               reply(response);
             });
           }
+        },
+        {
+          method: 'GET',
+          path: '/addOrgName/{name}',
+          handler: function (request, reply) {
+            request.pg.people.addOrgName(request.params.name, function (error, response) { // eslint-disable-line
+              reply('error' + error + 'response' + response);
+            });
+          }
+        },
+        {
+          method: 'GET',
+          path: '/getActiveOrgs',
+          handler: function (request, reply) {
+            request.pg.people.getActiveOrgs(function (error, response) { // eslint-disable-line
+              reply(response);
+            });
+          }
         }
       ]);
 
