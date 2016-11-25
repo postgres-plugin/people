@@ -9,7 +9,8 @@
     "org_id": null,
     "job_title": "Developer",
     "last_login": 1479491066104,
-    "active": true
+    "active": true,
+    "account_activated": true
   },
   {
     "first_name": "James",
@@ -21,6 +22,7 @@
     "org_id": 1,
     "job_title": "spy",
     "last_login": 1479491066104,
-    "active": true
+    "active": true,
+    "account_activated": true
   }
 ]

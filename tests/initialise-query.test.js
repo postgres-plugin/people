@@ -42,7 +42,8 @@ test('Create intialise query with reset = true', function (t) {
       password: '123pwd',
       org_id: 1,
       job_title: 'user',
-      active: true
+      active: true,
+      account_activated: true
     }
   ];
   var tagsOrgs = [
