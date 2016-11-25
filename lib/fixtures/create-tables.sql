@@ -19,7 +19,8 @@ CREATE TABLE IF NOT EXISTS people (
   org_id INTEGER REFERENCES organisations (id),
   job_title VARCHAR(80),
   last_login BIGINT,
-  active BOOLEAN NOT NULL
+  active BOOLEAN NOT NULL,
+  account_activated BOOLEAN NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS tags_organisations (

@@ -15,14 +15,15 @@ test('Convert array of people to sql query', function (t) {
       org_id: 1,
       job_title: 'user',
       last_login: 1479491066104,
-      active: true
+      active: true,
+      account_activated: true
     }
   ];
   var query = peopleData(people);
   var expected = "INSERT INTO people "
-    + "(first_name, last_name, user_type, email, phone, password, org_id, job_title, last_login, active)"
+    + "(first_name, last_name, user_type, email, phone, password, org_id, job_title, last_login, active, account_activated)"
     + " VALUES "
-    + "('bob', 'bobby', 'admin', 'bob.bobby@bob.com', '007', '123pwd', 1, 'user', 1479491066104, true);";
+    + "('bob', 'bobby', 'admin', 'bob.bobby@bob.com', '007', '123pwd', 1, 'user', 1479491066104, true, true);";
 
   t.equal(query, expected, 'Query to add people is ok');
   t.end();
