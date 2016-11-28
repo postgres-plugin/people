@@ -51,7 +51,7 @@ function init (config, callback) {
           method: 'GET',
           path: '/people',
           handler: function (request, reply) {
-            request.pg.people.getAllPeople(function (error, response) { // eslint-disable-line
+            request.server.methods.pg.people.getAllPeople(function (error, response) { // eslint-disable-line
               reply(response);
             });
           }
@@ -60,7 +60,7 @@ function init (config, callback) {
           method: 'GET',
           path: '/getbyemail',
           handler: function (request, reply) {
-            request.pg.people.getByEmail('bob.bobby@bob.com', function (error, response) { // eslint-disable-line
+            request.server.methods.pg.people.getByEmail('bob.bobby@bob.com', function (error, response) { // eslint-disable-line
               reply(response);
             });
           }
@@ -69,7 +69,7 @@ function init (config, callback) {
           method: 'GET',
           path: '/addOrgName/{name}',
           handler: function (request, reply) {
-            request.pg.people.addOrgName(request.params.name, function (error, response) { // eslint-disable-line
+            request.server.methods.pg.organisations.addOrgName(request.params.name, function (error, response) { // eslint-disable-line
               reply('error' + error + 'response' + response);
             });
           }
@@ -78,7 +78,7 @@ function init (config, callback) {
           method: 'GET',
           path: '/getActiveOrgs',
           handler: function (request, reply) {
-            request.pg.people.getActiveOrgs(function (error, response) { // eslint-disable-line
+            request.server.methods.pg.organisations.getActiveOrgs(function (error, response) { // eslint-disable-line
               reply(response);
             });
           }
