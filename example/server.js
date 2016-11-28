@@ -60,7 +60,7 @@ function init (config, callback) {
           method: 'GET',
           path: '/getbyemail',
           handler: function (request, reply) {
-            request.server.methods.pg.people.getByEmail('bob.bobby@bob.com', function (error, response) { // eslint-disable-line
+            request.server.methods.pg.people.getByEmail('email', 'bob.bobby@bob.com', function (error, response) { // eslint-disable-line
               reply(response);
             });
           }
