@@ -58,9 +58,18 @@ function init (config, callback) {
         },
         {
           method: 'GET',
+          path: '/peopleGetById',
+          handler: function (request, reply) {
+            request.server.methods.pg.people.getBy('id', request.query.id, function (error, response) { // eslint-disable-line
+              reply(response);
+            });
+          }
+        },
+        {
+          method: 'GET',
           path: '/getbyemail',
           handler: function (request, reply) {
-            request.server.methods.pg.people.getByEmail('bob.bobby@bob.com', function (error, response) { // eslint-disable-line
+            request.server.methods.pg.people.getBy('email', 'bob.bobby@bob.com', function (error, response) { // eslint-disable-line
               reply(response);
             });
           }

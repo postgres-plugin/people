@@ -19,7 +19,10 @@ test('Add an organisation', function (t) {
         method: 'GET',
         url: '/getActiveOrgs'
       }, function (resOrgs) {
-        t.equal(JSON.parse(resOrgs.payload)[0].name, 'aNewOrg', 'The org is saved');
+        var orgMatch = resOrgs.result.filter(function (org) {
+          return org.name === 'aNewOrg';
+        })
+        t.equal(orgMatch.length, 1, 'The org is saved');
         t.end();
         pool.end()
         server.stop()

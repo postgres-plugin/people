@@ -1,6 +1,6 @@
 {
   "name": "pg-people",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "People database in postgres.",
   "main": "lib/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "startmon": "nodemon ./example/start.js",
     "lint": "node_modules/.bin/goodparts .",
     "coverage": "istanbul check-coverage",
-    "test": "NODE_ENV=test istanbul cover tape \"./tests/*.test.js\" | node_modules/tap-spec/bin/cmd.js"
+    "test": "NODE_ENV=test istanbul cover tape \"./tests/**/*.test.js\" | node_modules/tap-spec/bin/cmd.js"
   },
   "repository": {
     "type": "git",
