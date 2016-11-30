@@ -2,6 +2,7 @@
 
 var Hapi = require('hapi');
 var pg = require('pg');
+var Hoek = require('hoek');
 // pg plugins
 var people = require('../lib/index.js');
 var tags = require('tags-system');
@@ -129,8 +130,10 @@ function init (config, callback) {
             method: 'GET',
             path: '/orgsGetDetails',
             handler: function (request, reply) {
-              console.log(request.query);
-              request.server.methods.pg.organisations.getDetails(function (error, response) { // eslint-disable-line
+              var id = request.query.id;
+
+              request.server.methods.pg.organisations.getDetails(id, function (error, response) { // eslint-disable-line
+                Hoek.assert(!error, 'orgs.getDetails error');
                 reply(response);
               });
             }

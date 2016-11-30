@@ -48,3 +48,37 @@ returns an array of length 1 or 0:
   account_activated: true
 }
 ```
+
+
+### request.server.pg.organisations.getDetails(orgId, cb)
+returns an object:
+```js
+{
+  "org": {
+    "id": 1,
+    "name": "Apple",
+    "logo_url": "https://apple.com",
+    "mission_statement": "Change the economy"
+  },
+  "primary": {
+    "first_name": "Sally",
+    "last_name": "Robbins",
+    "id": "07111111111",
+    "email": "sa@ro.co",
+    "job_title": "Athlete"
+  },
+  "challenges": [
+    {
+      "id": 2,
+      "title": "Challenge Number 2",
+      "tags": [
+        {
+          "tag_id": 2,
+          "tag_name": "Corporate"
+        }
+      ]
+    },
+    ...
+  ]
+}
+```
