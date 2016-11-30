@@ -91,6 +91,16 @@ function init (config, callback) {
               reply(response);
             });
           }
+        },
+        {
+          method: 'GET',
+          path: '/orgsGetDetails',
+          handler: function (request, reply) {
+            // add params of orgId and maybe user.
+            request.server.methods.pg.organisations.getDetails(function (error, response) { // eslint-disable-line
+              reply(response);
+            });
+          }
         }
       ]);
 
