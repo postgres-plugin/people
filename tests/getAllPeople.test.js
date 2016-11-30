@@ -15,7 +15,7 @@ test('Get all the people', function (t) {
       method: 'GET',
       url: '/people'
     }, function (res) {
-      t.equal(JSON.parse(res.payload).length, 2, 'Return 2 users');
+      t.ok(res.result.length > 5, 'Return at least 6 users');
       t.end();
       pool.end()
       server.stop()

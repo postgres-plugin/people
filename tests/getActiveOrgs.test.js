@@ -16,17 +16,16 @@ test('Get all the active organisations', function (t) {
       url: '/getActiveOrgs'
     }, function (res) {
       var json = JSON.parse(res.payload)
-      var expected = [
-        {
-          "id": 1,
-          "name": "MI6",
-          "logo_url": "",
-          "mission_statement": "do some stuff",
-          "active": true
-        }
-      ];
-      t.equal(json.length, 1, 'There is only 1 org');
-      t.deepEqual(json, expected, 'The org retreived is correct');
+      var expected = {
+        id: 1,
+        name: "Apple AAAA",
+        logo_url: "https://www.google.co.uk/imgres?iitter.com%2Fcirculareconomy&docid=LnflHf1c&uact=8",
+        mission_statement: "Change the economy",
+        active: true
+      };
+      var appleOrg = res.result.filter(function (org) { return org.name === 'Apple AAAA'; })[0];
+      t.ok(res.result.length > 3, 'There are more than 3 active orgs');
+      t.deepEqual(appleOrg, expected, 'The org retreived is correct');
       t.end();
       pool.end()
       server.stop()

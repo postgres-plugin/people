@@ -13,10 +13,10 @@ test('Get all the people', function (t) {
 
     server.inject({
       method: 'GET',
-      url: '/getbyemail'
+      url: '/peopleGetBy?column=email&value=sa@ro.co'
     }, function (res) {
       t.equal(res.result.length, 1, 'Get a unique person')
-      t.equal(res.result[0].first_name, 'Bob', 'The person is Bob');
+      t.equal(res.result[0].first_name, 'Sally', 'The person is Sally');
       t.end();
       pool.end()
       server.stop()
