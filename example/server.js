@@ -2,26 +2,43 @@
 
 var Hapi = require('hapi');
 var pg = require('pg');
-var register = require('../lib/index.js');
-var tagsSystem = require('tags-system');
+// pg plugins
+var people = require('../lib/index.js');
+var tags = require('tags-system');
+var challenges = require('pg-challenges');
+
+// pg tables data
+var tagsData = require('./data/tags.json');
+var categoriesData = require('./data/categories.json');
 var peopleData = require('./data/people.json');
 var organisationsData = require('./data/organisations.json');
+var tagsOrgsData = require('./data/tags_organisations.json');
+var challengesData = require('./data/challenges.json');
+var tagsChallengesData = require('./data/tags_challenges.json');
 
 function init (config, callback) {
   var server = new Hapi.Server();
   var pool = new pg.Pool(config.pg);
   var optionsTags = {
-    tags: [],
-    categories: [],
+    reset: true,
+    tags: tagsData,
+    categories: categoriesData,
     pool: pool
   };
   var optionsPeople = {
     pool: pool,
-    reset: Boolean(process.env.RESET_TABLES_PEOPLE), // reset with content passed in the options, change the env to true and restart to add content
+    reset: true,
     people: peopleData,
     organisations: organisationsData,
-    tags_organisations: []
+    tags_organisations: tagsOrgsData
   };
+  var optionsChallenges = {
+    pool: pool,
+    reset: true,
+    challenges: challengesData,
+    tags_challenges: tagsChallengesData
+  };
+
 
   pool.on('error', function () {
     console.log('Pool error'); // eslint-disable-line
@@ -31,81 +48,98 @@ function init (config, callback) {
   // register tags plugin which will create the tags table
   // which is referenced in tags_organisations
   server.register({
-    register: tagsSystem,
+    register: tags,
     options: optionsTags
   }, function (errorTags) {
     if (errorTags) {
-      return callback(errorTags);
+      console.log('error tags'); // eslint-disable-line
+
+      return callback(errorTags, server, pool);
     }
 
-    return server.register([{
-      register: register,
+    return server.register({
+      register: people,
       options: optionsPeople
-    }], function (err) {
-      if (err) {
-        return callback(err);
+    }, function (errorPeople) {
+      if (errorPeople) {
+        console.log('error people'); // eslint-disable-line
+
+        return callback(errorPeople, server, pool);
       }
 
-      server.route([
-        {
-          method: 'GET',
-          path: '/people',
-          handler: function (request, reply) {
-            request.server.methods.pg.people.getAllPeople(function (error, response) { // eslint-disable-line
-              reply(response);
-            });
-          }
-        },
-        {
-          method: 'GET',
-          path: '/peopleGetById',
-          handler: function (request, reply) {
-            request.server.methods.pg.people.getBy('id', request.query.id, function (error, response) { // eslint-disable-line
-              reply(response);
-            });
-          }
-        },
-        {
-          method: 'GET',
-          path: '/getbyemail',
-          handler: function (request, reply) {
-            request.server.methods.pg.people.getBy('email', 'bob.bobby@bob.com', function (error, response) { // eslint-disable-line
-              reply(response);
-            });
-          }
-        },
-        {
-          method: 'GET',
-          path: '/addOrgName/{name}',
-          handler: function (request, reply) {
-            request.server.methods.pg.organisations.addOrgName(request.params.name, function (error, response) { // eslint-disable-line
-              reply('error' + error + 'response' + response);
-            });
-          }
-        },
-        {
-          method: 'GET',
-          path: '/getActiveOrgs',
-          handler: function (request, reply) {
-            request.server.methods.pg.organisations.getActiveOrgs(function (error, response) { // eslint-disable-line
-              reply(response);
-            });
-          }
-        },
-        {
-          method: 'GET',
-          path: '/orgsGetDetails',
-          handler: function (request, reply) {
-            // add params of orgId and maybe user.
-            request.server.methods.pg.organisations.getDetails(function (error, response) { // eslint-disable-line
-              reply(response);
-            });
-          }
-        }
-      ]);
+      return server.register({
+        register: challenges,
+        options: optionsChallenges
+      }, function (errorChallenges) {
+        if (errorChallenges) {
+          console.log('error challenges'); //eslint-disable-line
 
-      return server.start(function (errorStart) {
-        return callback(errorStart, server, pool);
+          return callback(errorChallenges, server, pool);
+        }
+        server.route([
+          {
+            method: 'GET',
+            path: '/people',
+            handler: function (request, reply) {
+              request.server.methods.pg.people.getAllPeople(function (error, response) { // eslint-disable-line
+                reply(response);
+              });
+            }
+          },
+          {
+            method: 'GET',
+            path: '/peopleGetById',
+            handler: function (request, reply) {
+              request.server.methods.pg.people.getBy('id', request.query.id, function (error, response) { // eslint-disable-line
+                reply(response);
+              });
+            }
+          },
+          {
+            method: 'GET',
+            path: '/peopleGetBy',
+            handler: function (request, reply) {
+              var columnName = request.query.column;
+              var value = request.query.value;
+
+              request.server.methods.pg.people.getBy(columnName, value, function (error, response) { // eslint-disable-line
+                reply(response);
+              });
+            }
+          },
+          {
+            method: 'GET',
+            path: '/addOrgName/{name}',
+            handler: function (request, reply) {
+              request.server.methods.pg.organisations.addOrgName(request.params.name, function (error, response) { // eslint-disable-line
+                reply('error' + error + 'response' + response);
+              });
+            }
+          },
+          {
+            method: 'GET',
+            path: '/getActiveOrgs',
+            handler: function (request, reply) {
+              request.server.methods.pg.organisations.getActiveOrgs(function (error, response) { // eslint-disable-line
+                reply(response);
+              });
+            }
+          },
+          {
+            method: 'GET',
+            path: '/orgsGetDetails',
+            handler: function (request, reply) {
+              console.log(request.query);
+              request.server.methods.pg.organisations.getDetails(function (error, response) { // eslint-disable-line
+                reply(response);
+              });
+            }
+          }
+        ]);
+
+        return server.start(function (errorStart) {
+          return callback(errorStart, server, pool);
+        });
       });
     });
   });
