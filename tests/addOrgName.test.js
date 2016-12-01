@@ -17,7 +17,7 @@ test('Add an organisation', function (t) {
     }, function (res) {
       server.inject({
         method: 'GET',
-        url: '/getActiveOrgs'
+        url: '/orgsGetByTag'
       }, function (resOrgs) {
         var orgMatch = resOrgs.result.filter(function (org) {
           return org.name === 'aNewOrg';

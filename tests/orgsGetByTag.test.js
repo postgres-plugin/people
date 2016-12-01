@@ -13,14 +13,13 @@ test('Get all the active organisations', function (t) {
 
     server.inject({
       method: 'GET',
-      url: '/getActiveOrgs'
+      url: '/orgsGetByTag?active=true'
     }, function (res) {
       var json = JSON.parse(res.payload)
       var expected = {
         id: 1,
         name: "Apple AAAA",
         logo_url: "https://www.google.co.uk/imgres?iitter.com%2Fcirculareconomy&docid=LnflHf1c&uact=8",
-        mission_statement: "Change the economy",
         active: true
       };
       var appleOrg = res.result.filter(function (org) { return org.name === 'Apple AAAA'; })[0];
