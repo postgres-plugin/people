@@ -24,7 +24,7 @@ test('get org id 1 details for profile view, orgs.getDetails', function (t) {
       t.deepEqual(Object.keys(ob.primary), [ 'first_name', 'last_name', 'id', 'phone', 'email', 'job_title'], 'Gets the correct keys for the org');
       t.deepEqual(Object.keys(ob.challenges[0]), [ 'id', 'title', 'description', 'tags'], 'Gets the correct keys for the challenges');
       t.equal(ob.challenges.length, 2, 'Gets the correct number of challenges for org');
-      t.equal(ob.challenges[0].title, 'Challenge Number 2', 'Gets the correct challenge for org');
+      t.equal(ob.challenges[1].title, 'Challenge Number 2', 'Gets the correct challenge for org');
       t.end();
       pool.end()
       server.stop()
@@ -64,18 +64,18 @@ test('get org id 2 details for profile view, orgs.getDetails', function (t) {
           email: "be@ma.co",
           job_title: "Awesome"
         };
-      var expectedChallenge1 =
+      var expectedChallenge0 =
         {
           id: 4,
           title: "Challenge Number 4",
           description: "Who should I...?",
           tags: [ { tag_id: 9,  tag_name: "Automotive and Transport Manufacturing" }
                 , { tag_id: 11, tag_name: "Chemicals" }
-                , { tag_id: 60, tag_name: "Secondary education" }
                 , { tag_id: 69, tag_name: "Design for disassembly" }
+                , { tag_id: 60, tag_name: "Secondary education" }
                 ]
         };
-      var expectedChallenge2 =
+      var expectedChallenge1 =
         {
           id: 5,
           title: "Challenge Number 5",
@@ -83,10 +83,11 @@ test('get org id 2 details for profile view, orgs.getDetails', function (t) {
           tags: []
         };
 
+
       t.deepEqual(ob.org, expectedOrg, 'Gets the correct org with id 2');
       t.deepEqual(ob.primary, expectedPrimary, 'Gets the correct primary user with org id 2');
-      t.deepEqual(ob.challenges[0], expectedChallenge1, 'Gets the correct first challenge for org with id 2');
-      t.deepEqual(ob.challenges[1], expectedChallenge2, 'Gets the correct second challenge for org with id 2');
+      t.deepEqual(ob.challenges[0], expectedChallenge0, 'Gets the correct first challenge for org with id 2');
+      t.deepEqual(ob.challenges[1], expectedChallenge1, 'Gets the correct second challenge for org with id 2');
       t.end();
       pool.end()
       server.stop()
