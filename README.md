@@ -83,7 +83,7 @@ returns an object:
 }
 ```
 
-### request.server.pg.organisations.getByTag(active, filter, cb)
+### request.server.pg.organisations.orgsGetByTag(active, filter, cb)
 where
 `active` is a Boolean value; Setting this to `false` will return _all_ (active
   and inactive) organisations. `true` will return _active_ orgs only.
