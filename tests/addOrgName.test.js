@@ -17,9 +17,9 @@ test('Add an organisation', function (t) {
     }, function (res) {
       server.inject({
         method: 'GET',
-        url: '/getActiveOrgs'
+        url: '/orgsGetByTag'
       }, function (resOrgs) {
-        var orgMatch = resOrgs.result.filter(function (org) {
+        var orgMatch = resOrgs.result.orgs.filter(function (org) {
           return org.name === 'aNewOrg';
         })
         t.equal(orgMatch.length, 1, 'The org is saved');

@@ -119,9 +119,9 @@ function init (config, callback) {
           },
           {
             method: 'GET',
-            path: '/getActiveOrgs',
+            path: '/orgsGetByTag',
             handler: function (request, reply) {
-              request.server.methods.pg.organisations.getActiveOrgs(function (error, response) { // eslint-disable-line
+              request.server.methods.pg.organisations.orgsGetByTag(request.query.active, request.query.tags, function (error, response) { // eslint-disable-line
                 reply(response);
               });
             }
