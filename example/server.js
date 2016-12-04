@@ -137,6 +137,19 @@ function init (config, callback) {
                 reply(response);
               });
             }
+          },
+          {
+            method: 'POST',
+            path: '/updateOrg',
+            handler: function (request, reply) {
+              var id = request.query.id;
+              var orgObj = request.payload;
+
+              request.server.methods.pg.organisations.edit(id, orgObj, function (error, response) { // eslint-disable-line
+                Hoek.assert(!error, 'orgs.getDetails error');
+                reply(response);
+              });
+            }
           }
         ]);
 
