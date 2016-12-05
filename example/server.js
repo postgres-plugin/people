@@ -149,6 +149,18 @@ function init (config, callback) {
                 reply(response);
               });
             }
+          },
+          {
+            method: 'GET',
+            path: '/orgsToggleActive',
+            handler: function (request, reply) {
+              var orgId = request.query.id;
+
+              request.server.methods.pg.organisations.toggleActive(orgId, function (error, response) { // eslint-disable-line
+                Hoek.assert(!error, 'orgs.add error');
+                reply(response);
+              });
+            }
           }
         ]);
 
