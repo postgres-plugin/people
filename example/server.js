@@ -150,6 +150,18 @@ function init (config, callback) {
                 reply(response);
               });
             }
+          },
+          {
+            method: 'POST',
+            path: '/orgsAdd',
+            handler: function (request, reply) {
+              var orgObj = request.payload;
+
+              request.server.methods.pg.organisations.add(orgObj, function (error, response) { // eslint-disable-line
+                Hoek.assert(!error, 'orgs.add error');
+                reply(response);
+              });
+            }
           }
         ]);
 
