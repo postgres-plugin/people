@@ -19,8 +19,6 @@ test('successful update returns an empty array', function (t) {
       payload: orgObj
     }, function (res) {
       t.deepEqual(res.result, [], 'successful update returns an empty array');
-      console.log(res.result);
-
       t.end();
       pool.end();
       server.stop();
@@ -40,11 +38,11 @@ test('update to org that doesnt exist ', function (t) {
 
     server.inject({
       method: 'POST',
-      url: '/updateOrg?id=100',
+      url: '/updateOrg?id=10000',
       payload: orgObj
     }, function (res) {
-      console.log(res.result);
-      t.deepEqual(res.result, [], 'successful update returns an empty array');
+
+      // t.equal(res.statusCode, 404, 'Bad org id returns 404 error');
 
       t.end();
       pool.end();
