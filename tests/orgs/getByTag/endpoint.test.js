@@ -1,8 +1,8 @@
 'use strict';
 
 var test = require('tape');
-var init = require('../example/server.js');
-var config = require('../config/load-config.js');
+var init = require('../../../example/server.js');
+var config = require('../../../config/load-config.js');
 
 test('Get all active and inactive organisations', function (t) {
   init(config, function (err, server, pool) {
@@ -73,7 +73,29 @@ test('Get all the active organisations', function (t) {
 });
 
 test('Get all organisations associated with a tag', function (t) {
-  var tagId = 69;
+  var expected = {
+    filter: {
+      id: 69,
+      name: 'Design for disassembly'
+    },
+    orgs: [{
+      id: 6,
+      name: 'Asda',
+      logo_url: 'https://www.google.co.uk/imgres?iitter.com%2Fcirculareconomy&docid=LnflHf1c&uact=8',
+      active: false
+    }, {
+      id: 5,
+      name: 'Co-op Group',
+      logo_url: 'https://www.google.co.uk/imgres?iitter.com%2Fcirculareconomy&docid=LnflHf1c&uact=8',
+      active: true
+    }, {
+      id: 4,
+      name: 'EMF',
+      logo_url: 'https://www.google.co.uk/imgres?iitter.com%2Fcirculareconomy&docid=LnflHf1c&uact=8',
+      active: true
+    }]
+  };
+
   init(config, function (err, server, pool) {
     if (err) {
       console.log('error initialise server', err);
@@ -82,28 +104,9 @@ test('Get all organisations associated with a tag', function (t) {
 
     server.inject({
       method: 'GET',
-      url: '/orgsGetByTag?tags=' + tagId
+      url: '/orgsGetByTag?tags=' + expected.filter.id
     }, function (res) {
-      var expected = {
-        filter_tag: 'Design for disassembly',
-        orgs: [{
-          id: 6,
-          name: 'Asda',
-          logo_url: 'https://www.google.co.uk/imgres?iitter.com%2Fcirculareconomy&docid=LnflHf1c&uact=8',
-          active: false
-        }, {
-          id: 5,
-          name: 'Co-op Group',
-          logo_url: 'https://www.google.co.uk/imgres?iitter.com%2Fcirculareconomy&docid=LnflHf1c&uact=8',
-          active: true
-        }, {
-          id: 4,
-          name: 'EMF',
-          logo_url: 'https://www.google.co.uk/imgres?iitter.com%2Fcirculareconomy&docid=LnflHf1c&uact=8',
-          active: true
-        }]
-      };
-      t.deepEqual(res.result, expected, 'active and inactive orgs associated with tag ' + tagId + 'displayed')
+      t.deepEqual(res.result, expected, 'active and inactive orgs associated with tag ' + expected.filter.id + 'displayed');
       t.end();
       pool.end()
       server.stop()
@@ -112,7 +115,24 @@ test('Get all organisations associated with a tag', function (t) {
 });
 
 test('Get all the active organisations, associated with a specific tag', function (t) {
-  var tagId = 69;
+  var expected = {
+    filter: {
+      id: 69,
+      name: 'Design for disassembly'
+    },
+    orgs: [{
+      id: 5,
+      name: 'Co-op Group',
+      logo_url: 'https://www.google.co.uk/imgres?iitter.com%2Fcirculareconomy&docid=LnflHf1c&uact=8',
+      active: true
+    }, {
+      id: 4,
+      name: 'EMF',
+      logo_url: 'https://www.google.co.uk/imgres?iitter.com%2Fcirculareconomy&docid=LnflHf1c&uact=8',
+      active: true
+    }]
+  };
+
   init(config, function (err, server, pool) {
     if (err) {
       console.log('error initialise server', err);
@@ -121,23 +141,11 @@ test('Get all the active organisations, associated with a specific tag', functio
 
     server.inject({
       method: 'GET',
-      url: '/orgsGetByTag?active=true&tags=' + tagId
+      url: '/orgsGetByTag?active=true&tags=' + expected.filter.id
     }, function (res) {
-      var filter = 'Design for disassembly'
-      var expected = [{
-        id: 5,
-        name: 'Co-op Group',
-        logo_url: 'https://www.google.co.uk/imgres?iitter.com%2Fcirculareconomy&docid=LnflHf1c&uact=8',
-        active: true
-      }, {
-        id: 4,
-        name: 'EMF',
-        logo_url: 'https://www.google.co.uk/imgres?iitter.com%2Fcirculareconomy&docid=LnflHf1c&uact=8',
-        active: true
-      }];
-      t.ok(res.result.orgs.length = 2, 'There are 2 active orgs associated to tagId ' + tagId);
-      t.deepEqual(expected, res.result.orgs, 'The org retreived is correct');
-      t.equal(filter, res.result.filter_tag, 'The query response has been correctly formatted');
+      t.ok(res.result.orgs.length = 2, 'There are 2 active orgs associated to tagId ' + expected.filter.id);
+      t.deepEqual(res.result.orgs, expected.orgs, 'The org retreived is correct');
+      t.equal(res.result.filter.name, expected.filter.name, 'The query response has been correctly formatted');
       t.end();
       pool.end()
       server.stop()
@@ -146,7 +154,13 @@ test('Get all the active organisations, associated with a specific tag', functio
 });
 
 test('When no orgs are found to match a specific tag', function (t) {
-  var tagId = 2;
+  var expected = {
+    filter: {
+      id: 2,
+      name: 'Corporate'
+    },
+    orgs: []
+  };
   init(config, function (err, server, pool) {
     if (err) {
       console.log('error initialise server', err);
@@ -155,17 +169,8 @@ test('When no orgs are found to match a specific tag', function (t) {
 
     server.inject({
       method: 'GET',
-      url: '/orgsGetByTag?tags=' + tagId
+      url: '/orgsGetByTag?tags=' + expected.filter.id
     }, function (res) {
-      var expected = {
-        filter_tag: 'Corporate',
-        orgs: [{
-          id: null,
-          name: null,
-          logo_url: null,
-          active: null
-        }]
-      };
       t.deepEqual(res.result, expected, 'No orgs but tag name retreived');
       t.end();
       pool.end()
@@ -186,7 +191,7 @@ test('When an unexpected tagID is used to search for matching orgs', function (t
       method: 'GET',
       url: '/orgsGetByTag?tags=' + tagId
     }, function (res) {
-      t.ok(res, null, 'nothing returned');
+      t.equal(res.result, null, 'nothing returned');
       t.end();
       pool.end()
       server.stop()
