@@ -103,3 +103,7 @@ returns an object of the following format:
   }
 }
 ```
+
+### request.server.pg.organisations.toggleActive(orgId, cb)
+if org id is a legitimate organisation id, we return an empty array
+if org id is not recognised, we will return an Boom.notFound error.
