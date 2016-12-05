@@ -11,7 +11,6 @@ test('add organisation function', function (t) {
 
     var org = {
       name: 'Simon',
-      mission_statement: 'Bonjour massour',
       logo_url: 'www.dunkendoughnuts.com'
     }
 
