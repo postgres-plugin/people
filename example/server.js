@@ -3,6 +3,7 @@
 var Hapi = require('hapi');
 var pg = require('pg');
 var Hoek = require('hoek');
+var Boom = require('boom');
 // pg plugins
 var people = require('../lib/index.js');
 var tags = require('tags-system');
@@ -122,7 +123,11 @@ function init (config, callback) {
             path: '/orgsGetByTag',
             handler: function (request, reply) {
               request.server.methods.pg.organisations.orgsGetByTag(request.query.active, request.query.tags, function (error, response) { // eslint-disable-line
-                reply(response);
+                if (error === 'invalid tag') {
+                  return reply(Boom.badRequest(error));
+                }
+
+                return reply(response);
               });
             }
           },

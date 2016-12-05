@@ -191,7 +191,8 @@ test('When an unexpected tagID is used to search for matching orgs', function (t
       method: 'GET',
       url: '/orgsGetByTag?tags=' + tagId
     }, function (res) {
-      t.equal(res.result, null, 'nothing returned');
+      t.equal(res.statusCode, 400, '400 statusCode returned')
+      t.equal(res.result.message, 'invalid tag', 'error message returned');
       t.end();
       pool.end()
       server.stop()
