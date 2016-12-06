@@ -26,8 +26,8 @@ test('get org id 1 details for profile view, orgs.getDetails', function (t) {
       t.equal(ob.challenges.length, 2, 'Gets the correct number of challenges for org');
       t.equal(ob.challenges[1].title, 'Challenge Number 2', 'Gets the correct challenge for org');
       t.end();
-      pool.end()
-      server.stop()
+      pool.end();
+      server.stop();
     });
   });
 });

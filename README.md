@@ -103,3 +103,10 @@ returns an object of the following format:
   }
 }
 ```
+
+
+
+### pg.organisations.edit(orgId, orgObj, cb)
+Where
+`id`: integer
+`orgObj`: object containing at least one of the following keys: `['name', 'logo_url', 'mission_statement']`
