@@ -82,7 +82,7 @@ function init (config, callback) {
             method: 'GET',
             path: '/people',
             handler: function (request, reply) {
-              request.server.methods.pg.people.getAllPeople(function (error, response) { // eslint-disable-line
+              request.server.methods.pg.people.getAllPeople(request.query.active, function (error, response) { // eslint-disable-line
                 reply(response);
               });
             }
@@ -138,6 +138,49 @@ function init (config, callback) {
 
               request.server.methods.pg.organisations.getDetails(id, function (error, response) { // eslint-disable-line
                 Hoek.assert(!error, 'orgs.getDetails error');
+                reply(response);
+              });
+            }
+          },
+          {
+            method: 'POST',
+            path: '/updateOrg',
+            handler: function (request, reply) {
+              var id = request.query.id;
+              var orgObj = request.payload;
+
+              request.server.methods.pg.organisations.edit(id, orgObj, function (error, response) { // eslint-disable-line
+                if (error && error.output && error.output.statusCode === 404) {
+                  return reply(error.message).code(404);
+                }
+                Hoek.assert(!error, 'orgs.getDetails error');
+                reply(response);
+              });
+            }
+          },
+          {
+            method: 'POST',
+            path: '/orgsAdd',
+            handler: function (request, reply) {
+              var orgObj = request.payload;
+
+              request.server.methods.pg.organisations.add(orgObj, function (error, response) { // eslint-disable-line
+                Hoek.assert(!error, 'orgs.add error');
+                reply(response);
+              });
+            }
+          },
+          {
+            method: 'GET',
+            path: '/orgsToggleActive',
+            handler: function (request, reply) {
+              var orgId = request.query.id;
+
+              request.server.methods.pg.organisations.toggleActive(orgId, function (error, response) { // eslint-disable-line
+                if (error && error.output && error.output.statusCode === 404) {
+                  return reply(error.output.payload.message).code(404);
+                }
+                Hoek.assert(!error, 'orgs.add error');
                 reply(response);
               });
             }
