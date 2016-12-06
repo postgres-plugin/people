@@ -71,7 +71,7 @@ test('enable an inactive org', function (t) {
       url: '/orgsToggleActive?id=10000'
     }, function (res) {
 
-      //t.equal(res.statusCode, 404, 'Update an organisation that doest exist returns a 404');
+      t.equal(res.statusCode, 404, 'Update an organisation that doest exist returns a 404');
 
 
       t.end();
