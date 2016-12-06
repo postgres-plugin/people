@@ -82,7 +82,7 @@ function init (config, callback) {
             method: 'GET',
             path: '/people',
             handler: function (request, reply) {
-              request.server.methods.pg.people.getAllPeople(function (error, response) { // eslint-disable-line
+              request.server.methods.pg.people.getAllPeople(request.query.active, function (error, response) { // eslint-disable-line
                 reply(response);
               });
             }
