@@ -122,7 +122,11 @@ function init (config, callback) {
             path: '/orgsGetByTag',
             handler: function (request, reply) {
               request.server.methods.pg.organisations.orgsGetByTag(request.query.active, request.query.tags, function (error, response) { // eslint-disable-line
-                reply(response);
+                if (error) {
+                  return reply(error);
+                }
+
+                return reply(response);
               });
             }
           },
