@@ -15,6 +15,7 @@ test('Get all the people', function (t) {
       method: 'GET',
       url: '/people'
     }, function (res) {
+
       t.ok(res.result.length > 5, 'Return at least 6 users');
       t.end();
       pool.end()
