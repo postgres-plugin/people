@@ -146,6 +146,9 @@ function init (config, callback) {
               var orgObj = request.payload;
 
               request.server.methods.pg.organisations.edit(id, orgObj, function (error, response) { // eslint-disable-line
+                if (error && error.output && error.output.statusCode === 404) {
+                  return reply(error.message).code(404);
+                }
                 Hoek.assert(!error, 'orgs.getDetails error');
                 reply(response);
               });
