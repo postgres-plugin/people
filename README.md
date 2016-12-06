@@ -104,6 +104,16 @@ returns an object of the following format:
 }
 ```
 
+
 ### request.server.pg.organisations.toggleActive(orgId, cb)
+if org id is a legitimate organisation id, we return an empty array
+if org id is not recognised, we will return an Boom.notFound error.
+
+
+### pg.organisations.edit(orgId, orgObj, cb)
+Where
+`id`: integer
+`orgObj`: object containing at least one of the following keys: `['name', 'logo_url', 'mission_statement']`
+
 if org id is a legitimate organisation id, we return an empty array
 if org id is not recognised, we will return an Boom.notFound error.
