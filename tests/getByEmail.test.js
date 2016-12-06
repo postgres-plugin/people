@@ -4,7 +4,7 @@ var test = require('tape');
 var init = require('../example/server.js');
 var config = require('../config/load-config.js');
 
-test('Get all the people', function (t) {
+test('Get by Email', function (t) {
   init(config, function (err, server, pool) {
     if (err) {
       console.log('error initialise server', err);

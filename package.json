@@ -29,7 +29,7 @@
     "pg": "^6.1.0",
     "pg-challenges": "^2.0.4",
     "pg-escape": "^0.2.0",
-    "pg-helpers": "0.0.2",
+    "pg-helpers": "^1.0.0",
     "tags-system": "^1.1.2",
     "tape": "^4.6.2"
   },
