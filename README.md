@@ -83,9 +83,9 @@ returns an object:
 }
 ```
 
-### request.server.pg.organisations.orgsGetByTag(active, filter, cb)
+### request.server.pg.organisations.orgsGetByTag(activeOnly, filter, cb)
 where
-`active` is a Boolean value; Setting this to `false` will return _all_ (active
+`activeOnly` is a Boolean value; Setting this to `false` will return _all_ (active
   and inactive) organisations. `true` will return _active_ orgs only.
 `filter` corresponds to a tag ID. Organisations are filtered by this, and the
   query will return only return organisations associated with the tag ID
@@ -94,7 +94,10 @@ where
 returns an object of the following format:
 ```js
 {
-  filter_tag: 69,
+  filter: {
+    id: 69,
+    name: 'Design for disassembly'
+  },
   orgs: {
     id: 1,
     name: 'Apple AAAA',
