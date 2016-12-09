@@ -31,7 +31,8 @@ So
 Updates the password field and sets 'account_activated' to true.
 Returns an array:
 - [] if no user was updated.
-- [{id: 8, org_id: 6}] if user was updated
+- [{returning_user: true, org_id: 6}] if user was updated and is activating the account
+returning_user would be false in the case of an existing user updating their password
 
 
 ### request.server.pg.people.getBy(columnName, value, cb)
