@@ -18,7 +18,7 @@ test('get org id 1 details for profile view, orgs.getDetails', function (t) {
     }, function (res) {
       var ob = res.result;
 
-      t.equal(ob.org.name, 'Apple AAAA', 'Gets the correct org');
+      t.equal(ob.org.name, 'Apple', 'Gets the correct org');
       t.deepEqual(Object.keys(ob.org), ['id', 'name', 'logo_url', 'mission_statement', 'active', 'tags'], 'Gets the correct keys for the org');
       t.equal(ob.primary.first_name, 'Sally', 'Gets the correct primary user');
       t.deepEqual(Object.keys(ob.primary), [ 'first_name', 'last_name', 'id', 'phone', 'email', 'job_title'], 'Gets the correct keys for the org');

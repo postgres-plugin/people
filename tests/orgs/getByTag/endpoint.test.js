@@ -16,7 +16,7 @@ test('Get all active and inactive organisations', function (t) {
       url: '/orgsGetByTag'
     }, function (res) {
       var expected = [
-        'Apple AAAA',
+        'Apple',
         'Asda',
         'Charcoal',
         'Coca Cola',
@@ -50,7 +50,7 @@ test('Get all the active organisations', function (t) {
       url: '/orgsGetByTag?active=true'
     }, function (res) {
       var expected = [
-        'Apple AAAA',
+        'Apple',
         // 'Asda', >> Marked as inactive
         'Charcoal',
         // 'Coca Cola', >> Marked as inactive
