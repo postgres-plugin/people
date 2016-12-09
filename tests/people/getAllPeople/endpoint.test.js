@@ -34,7 +34,7 @@ test('Get active only people', function (t) {
       method: 'GET',
       url: '/people?active=true'
     }, function (res) {
-      t.equal(res.result.length, 9, 'Only returns active users');
+      t.equal(res.result.length, 10, 'Only returns active users');
       t.end();
       pool.end()
       server.stop()

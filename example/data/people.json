@@ -97,11 +97,11 @@
     "user_type": "primary",
     "phone": "07111111111",
     "password": "$2a$04$vpHUCZvW2OtSNdmRAQdDj.OJ5npx6ViFybJqtVbJm7.WrpYtWT1jm",
-    "org_id": null,
+    "org_id": 6,
     "job_title": "Managing Director",
-    "last_login": 1480012514369,
-    "active": false,
-    "account_activated": true
+    "last_login": null,
+    "active": true,
+    "account_activated": false
   },
   {
     "first_name": "Frank",
