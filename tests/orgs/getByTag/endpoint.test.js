@@ -16,7 +16,7 @@ test('Get all active and inactive organisations', function (t) {
       url: '/orgsGetByTag'
     }, function (res) {
       var expected = [
-        'Apple AAAA',
+        'Apple',
         'Asda',
         'Charcoal',
         'Coca Cola',
@@ -50,7 +50,7 @@ test('Get all the active organisations', function (t) {
       url: '/orgsGetByTag?active=true'
     }, function (res) {
       var expected = [
-        'Apple AAAA',
+        'Apple',
         // 'Asda', >> Marked as inactive
         'Charcoal',
         // 'Coca Cola', >> Marked as inactive
@@ -82,7 +82,7 @@ test('Get all organisations associated with a tag', function (t) {
       id: 6,
       name: 'Asda',
       logo_url: 'https://www.google.co.uk/imgres?iitter.com%2Fcirculareconomy&docid=LnflHf1c&uact=8',
-      active: false
+      active: true
     }, {
       id: 5,
       name: 'Co-op Group',
@@ -106,7 +106,7 @@ test('Get all organisations associated with a tag', function (t) {
       method: 'GET',
       url: '/orgsGetByTag?tags=' + expected.filter.id
     }, function (res) {
-      t.deepEqual(res.result, expected, 'active and inactive orgs associated with tag ' + expected.filter.id + 'displayed');
+      t.deepEqual(res.result, expected, 'active and inactive orgs associated with tag ' + expected.filter.id + ' displayed');
       t.end();
       pool.end()
       server.stop()
@@ -121,6 +121,11 @@ test('Get all the active organisations, associated with a specific tag', functio
       name: 'Design for disassembly'
     },
     orgs: [{
+      id: 6,
+      name: 'Asda',
+      logo_url: 'https://www.google.co.uk/imgres?iitter.com%2Fcirculareconomy&docid=LnflHf1c&uact=8',
+      active: true
+    },{
       id: 5,
       name: 'Co-op Group',
       logo_url: 'https://www.google.co.uk/imgres?iitter.com%2Fcirculareconomy&docid=LnflHf1c&uact=8',
@@ -143,7 +148,7 @@ test('Get all the active organisations, associated with a specific tag', functio
       method: 'GET',
       url: '/orgsGetByTag?active=true&tags=' + expected.filter.id
     }, function (res) {
-      t.ok(res.result.orgs.length = 2, 'There are 2 active orgs associated to tagId ' + expected.filter.id);
+      t.equal(res.result.orgs.length, 3, 'There are 3 active orgs associated to tagId ' + expected.filter.id);
       t.deepEqual(res.result.orgs, expected.orgs, 'The org retreived is correct');
       t.equal(res.result.filter.name, expected.filter.name, 'The query response has been correctly formatted');
       t.end();
