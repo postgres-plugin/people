@@ -27,6 +27,14 @@ So
 
 - request.pg.people.getAllPeople - return a list of all the people
 
+### request.server.pg.people.addPassword(userId, password, cb)
+Updates the password field and sets 'account_activated' to true.
+Returns an array:
+- [] if no user was updated.
+- [{returning_user: true, org_id: 6}] if user was updated and is activating the account
+returning_user would be false in the case of an existing user updating their password
+
+
 ### request.server.pg.people.getBy(columnName, value, cb)
 where either
 columnName = 'email', value: string (an email address)

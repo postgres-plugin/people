@@ -110,6 +110,19 @@ function init (config, callback) {
           },
           {
             method: 'GET',
+            path: '/peopleAddPassword',
+            handler: function (request, reply) {
+              var id = request.query.id;
+              var password = request.query.password;
+
+              request.server.methods.pg.people.addPassword(id, password, function (error, response) { // eslint-disable-line
+                Hoek.assert(!error, 'people.addPassword error');
+                reply(response);
+              });
+            }
+          },
+          {
+            method: 'GET',
             path: '/addOrgName/{name}',
             handler: function (request, reply) {
               request.server.methods.pg.organisations.addOrgName(request.params.name, function (error, response) { // eslint-disable-line
@@ -153,7 +166,7 @@ function init (config, callback) {
                 if (error && error.output && error.output.statusCode === 404) {
                   return reply(error.message).code(404);
                 }
-                Hoek.assert(!error, 'orgs.getDetails error');
+                Hoek.assert(!error, 'orgs.edit error');
                 reply(response);
               });
             }
