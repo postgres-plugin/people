@@ -128,3 +128,13 @@ Where
 
 if org id is a legitimate organisation id, we return an empty array
 if org id is not recognised, we will return an Boom.notFound error.
+
+### pg.organisations.getActive(cb)
+```js
+[ { name: 'Apple', id: 1, active_primary_user: null },
+ { name: 'Asda', id: 6, active_primary_user: 8 },
+ { name: 'Charcoal', id: 3, active_primary_user: 5 },
+...
+]
+```
+Returns an array of orgs, ordering them alphabetically.
