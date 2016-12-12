@@ -132,6 +132,19 @@ function init (config, callback) {
           },
           {
             method: 'GET',
+            path: '/orgsGetAvailable',
+            handler: function (request, reply) {
+              request.server.methods.pg.organisations.getAvailable(function (error, response) { // eslint-disable-line
+                if (error) {
+                  return reply(error);
+                }
+
+                return reply(response);
+              });
+            }
+          },
+          {
+            method: 'GET',
             path: '/orgsGetDetails',
             handler: function (request, reply) {
               var id = request.query.id;
