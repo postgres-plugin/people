@@ -132,9 +132,9 @@ function init (config, callback) {
           },
           {
             method: 'GET',
-            path: '/orgsGetAvailable',
+            path: '/orgsGetActive',
             handler: function (request, reply) {
-              request.server.methods.pg.organisations.getAvailable(function (error, response) { // eslint-disable-line
+              request.server.methods.pg.organisations.getActive(function (error, response) { // eslint-disable-line
                 if (error) {
                   return reply(error);
                 }
