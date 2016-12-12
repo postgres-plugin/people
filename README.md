@@ -129,4 +129,4 @@ if org id is not recognised, we will return an Boom.notFound error.
 ...
 ]
 ```
-Returns an array of orgs, first orgs that don't have a primary user, then alphabetically.
+Returns an array of orgs, ordering them alphabetically.
