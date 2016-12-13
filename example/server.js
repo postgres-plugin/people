@@ -130,6 +130,25 @@ function init (config, callback) {
 
               request.server.methods.pg.people.edit(id, profileUpdate, function (error, response) { // eslint-disable-line
                 Hoek.assert(!error, 'people.edit error');
+
+                if (response.rowCount === 0) {
+                  return reply('error update people').code(404);
+                }
+
+                return reply(response);
+              });
+            }
+          },
+          {
+            path: '/peopleAdd',
+            method: 'POST',
+            handler: function (request, reply) {
+              var user = request.payload;
+
+              request.server.methods.pg.people.add(user, function (error, response) { // eslint-disable-line
+                if (error) {
+                  return reply().code(500);
+                }
                 reply(response);
               });
             }
