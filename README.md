@@ -64,6 +64,10 @@ returns an array of length 1 or 0:
 }
 ```
 
+### request.server.pg.people.toggleActive(userId, cb)
+Enables/disables user accounts.
+if userId is an attribute of an existing user, we return an empty array
+if userId is not recognised, we will return an Boom.notFound, 404 error.
 
 ### request.server.pg.organisations.getDetails(orgId, cb)
 returns an object:

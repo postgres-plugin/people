@@ -136,6 +136,18 @@ function init (config, callback) {
             }
           },
           {
+            method: 'POST',
+            path: '/peopleToggleActive',
+            handler: function (request, reply) {
+              var id = request.query.id;
+
+              request.server.methods.pg.people.toggleActive(id, function (error, response) { // eslint-disable-line
+                Hoek.assert(!error, 'people.edit error');
+                reply(response);
+              });
+            }
+          },
+          {
             method: 'GET',
             path: '/addOrgName/{name}',
             handler: function (request, reply) {
