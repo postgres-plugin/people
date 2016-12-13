@@ -64,6 +64,21 @@ returns an array of length 1 or 0:
 }
 ```
 
+### pg.people.edit(userId, updatedProfile, cb)
+Where
+`userId`: integer
+`updatedProfile`: an object of the following format:
+```js
+{
+  first_name: 'Sally',
+  last_name: 'Robertson',
+  job_title: 'Chocolatier',
+  phone: '07111111111'
+};
+```
+if the userId is not an attribute of an existing user, we return an empty array
+if the userId is an attribute of an existing user, we return an Boom.notFound, 404 error.
+
 ### request.server.pg.people.toggleActive(userId, cb)
 Enables/disables user accounts.
 if userId is an attribute of an existing user, we return an empty array
