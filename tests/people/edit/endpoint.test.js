@@ -42,8 +42,7 @@ test('Attempt to edit non-existent user\'s profile', function (t) {
       return t.fail();
     }
     server.inject(editProfile(5000), function (res) {
-      t.equal(res.statusCode, 404, 'User not found, 404 returned');
-      t.equal(res.result.message, 'The user specified does not exist', 'User not found; correct message returned');
+      t.equal(res.statusCode, 500, 'Attempt to update a no existing user');
       t.end();
       pool.end()
       server.stop()

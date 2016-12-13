@@ -69,7 +69,7 @@ Where
   phone: '07111111111'
 };
 ```
-if the userId is an attribute of an existing user, we return an empty array
+if the userId is not an attribute of an existing user, we return an empty array
 if the userId is an attribute of an existing user, we return an Boom.notFound, 404 error.
 
 ### request.server.pg.organisations.getDetails(orgId, cb)
