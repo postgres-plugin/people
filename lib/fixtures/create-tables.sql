@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS people (
   user_type VARCHAR(10) NOT NULL CHECK (user_type IN ('admin', 'primary', 'secondary')),
   email VARCHAR(100) NOT NULL UNIQUE,
   phone VARCHAR(100),
-  password VARCHAR(100) NOT NULL,
+  password VARCHAR(100),
   org_id INTEGER REFERENCES organisations (id),
   job_title VARCHAR(80),
   last_login BIGINT,
