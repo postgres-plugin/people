@@ -21,11 +21,19 @@ When reset is defined to ```true``` the plugin will reset the tables with the co
 
 So
 - database unchanged: no options, or options are empty array
-- datatbase reset: the options contain some data
+- database reset: the options contain some data
 
 # Exposed functions
 
 - request.pg.people.getAllPeople - return a list of all the people
+
+### request.server.pg.people.add(userObj, cb)
+Adds a new user sets 'active' to true and 'account_activated' to false.
+Returns an array:
+- [{ id: people.length + 1, org_id: 6, org_name: 'Asda' }] - if user was linked to an org
+- [{ id: people.length + 1, org_id: null, org_name: null }] - if no org was selected
+
+
 
 ### request.server.pg.people.addPassword(userId, password, cb)
 Updates the password field and sets 'account_activated' to true.
@@ -33,7 +41,6 @@ Returns an array:
 - [] if no user was updated.
 - [{returning_user: true, org_id: 6}] if user was updated and is activating the account
 returning_user would be false in the case of an existing user updating their password
-
 
 ### request.server.pg.people.getBy(columnName, value, cb)
 where either

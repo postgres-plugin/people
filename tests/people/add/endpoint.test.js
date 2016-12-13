@@ -26,7 +26,7 @@ test('successsful add user with orgnaisation', function (t) {
     }
 
     server.inject(addUser, function (res) {
-      var expected = [{ id: people.length + 1, org_id: 6 }];
+      var expected = [{ id: people.length + 1, org_id: 6, org_name: 'Asda' }];
 
       t.deepEqual(res.result, expected, 'successful add user returns their id and org id');
       t.end();
@@ -60,7 +60,7 @@ test('successsful add user with orgnaisation', function (t) {
     }
 
     server.inject(addUser, function (res) {
-      var expected = [{ id: people.length + 1, org_id: null }];
+      var expected = [{ id: people.length + 1, org_id: null, org_name: null }];
 
       t.deepEqual(res.result, expected, 'successful add user with no org returns the users id and null');
       t.end();
