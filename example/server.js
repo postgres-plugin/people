@@ -122,6 +122,19 @@ function init (config, callback) {
             }
           },
           {
+            method: 'POST',
+            path: '/peopleEdit',
+            handler: function (request, reply) {
+              var id = request.query.id;
+              var profileUpdate = request.payload;
+
+              request.server.methods.pg.people.edit(id, profileUpdate, function (error, response) { // eslint-disable-line
+                Hoek.assert(!error, 'people.edit error');
+                reply(response);
+              });
+            }
+          },
+          {
             method: 'GET',
             path: '/addOrgName/{name}',
             handler: function (request, reply) {
