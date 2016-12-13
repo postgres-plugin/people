@@ -26,8 +26,8 @@ test('Edit user profile', function (t) {
       return t.fail();
     }
     server.inject(editProfile(3), function (res) {
-      t.equal(res.statusCode, 200, 'User not found, 404 returned');
-      t.equal(res.payload, '[]', 'User not found; correct message returned');
+      t.equal(res.statusCode, 200, 'User found');
+      t.equal(res.payload, '[]', 'return an empty array');
       t.end();
       pool.end()
       server.stop()
