@@ -131,10 +131,6 @@ function init (config, callback) {
               request.server.methods.pg.people.edit(id, profileUpdate, function (error, response) { // eslint-disable-line
                 Hoek.assert(!error, 'people.edit error');
 
-                if (response.rowCount === 0) {
-                  return reply('error update people').code(404);
-                }
-
                 return reply(response);
               });
             }
