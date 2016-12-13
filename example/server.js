@@ -125,10 +125,12 @@ function init (config, callback) {
             method: 'POST',
             path: '/peopleAdd',
             handler: function (request, reply) {
-              var user = request.payload
+              var user = request.payload;
 
               request.server.methods.pg.people.add(user, function (error, response) { // eslint-disable-line
-                if (error) { return reply().code(500)}
+                if (error) {
+                  return reply().code(500);
+                }
                 reply(response);
               });
             }

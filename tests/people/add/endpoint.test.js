@@ -36,9 +36,6 @@ test('successsful add user with orgnaisation', function (t) {
   });
 });
 
-
-
-
 test('successsful add user with orgnaisation', function (t) {
   init(config, function (err, server, pool) {
     t.ok(!err, 'error starting server: ' + err);
