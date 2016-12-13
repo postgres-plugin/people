@@ -122,6 +122,18 @@ function init (config, callback) {
             }
           },
           {
+            method: 'POST',
+            path: '/peopleAdd',
+            handler: function (request, reply) {
+              var user = request.payload
+
+              request.server.methods.pg.people.add(user, function (error, response) { // eslint-disable-line
+                if (error) { return reply().code(500)}
+                reply(response);
+              });
+            }
+          },
+          {
             method: 'GET',
             path: '/addOrgName/{name}',
             handler: function (request, reply) {
