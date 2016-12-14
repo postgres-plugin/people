@@ -1,7 +1,7 @@
 'use strict';
 
 var test = require('tape');
-var query = require('../../../lib/queries/orgsGetByTag.js');
+var query = require('../../../lib/queries/orgs/orgsGetByTag.js');
 
 // orgsGetByTag(active, false)
 // where:

@@ -1,6 +1,6 @@
 {
   "name": "pg-people",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "People database in postgres.",
   "main": "lib/index.js",
   "scripts": {
