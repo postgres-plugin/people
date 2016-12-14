@@ -1,7 +1,7 @@
 'use strict';
 
 var test = require('tape');
-var queryFunc = require('../../../lib/queries/peopleGetBy.js');
+var queryFunc = require('../../../lib/queries/people/peopleGetBy.js');
 
 
 // people.getBy('id')
