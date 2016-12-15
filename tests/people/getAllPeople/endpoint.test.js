@@ -3,6 +3,7 @@
 var test = require('tape');
 var init = require('../../../example/server.js');
 var config = require('../../../config/load-config.js');
+var people = require('../../../example/data/people.json');
 
 test('Get all the people', function (t) {
   init(config, function (err, server, pool) {
@@ -15,10 +16,11 @@ test('Get all the people', function (t) {
       method: 'GET',
       url: '/people'
     }, function (res) {
-      t.ok(res.payload.indexOf('inactive') < 0, 'No inactive users');
+
+      t.equal(res.result.length, people.length, 'Only returns active users');
       t.end();
-      pool.end()
-      server.stop()
+      pool.end();
+      server.stop();
     });
   });
 });
@@ -29,15 +31,19 @@ test('Get active only people', function (t) {
       console.log('error initialise server', err);
       return t.fail();
     }
+    var activeNonAdmins = people.filter(function (p) {
+      return p.active && p.user_type !== 'admin';
+    }).length;
 
     server.inject({
       method: 'GET',
       url: '/people?active=true'
     }, function (res) {
-      t.equal(res.result.length, 10, 'Only returns active users');
+
+      t.equal(res.result.length, activeNonAdmins, 'Only returns active users');
       t.end();
-      pool.end()
-      server.stop()
+      pool.end();
+      server.stop();
     });
   });
 });

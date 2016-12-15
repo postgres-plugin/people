@@ -82,7 +82,8 @@ function init (config, callback) {
             method: 'GET',
             path: '/people',
             handler: function (request, reply) {
-              request.server.methods.pg.people.getAllPeople(request.query.active, function (error, response) { // eslint-disable-line
+              var activeNonAdmin = request.query.active === 'true';
+              request.server.methods.pg.people.getAllPeople(activeNonAdmin, function (error, response) { // eslint-disable-line
                 reply(response);
               });
             }
