@@ -16,7 +16,8 @@ test('Get all the people', function (t) {
       method: 'GET',
       url: '/people'
     }, function (res) {
-      t.ok(res.payload.indexOf('inactive') < 0, 'No inactive users');
+
+      t.equal(res.result.length, people.length, 'Only returns active users');
       t.end();
       pool.end();
       server.stop();
