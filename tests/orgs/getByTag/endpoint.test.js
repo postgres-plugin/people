@@ -81,17 +81,17 @@ test('Get all organisations associated with a tag', function (t) {
     orgs: [{
       id: 6,
       name: 'Asda',
-      logo_url: 'https://www.google.co.uk/imgres?iitter.com%2Fcirculareconomy&docid=LnflHf1c&uact=8',
+      logo_url: null,
       active: true
     }, {
       id: 5,
       name: 'Co-op Group',
-      logo_url: 'https://www.google.co.uk/imgres?iitter.com%2Fcirculareconomy&docid=LnflHf1c&uact=8',
+      logo_url: null,
       active: true
     }, {
       id: 4,
       name: 'EMF',
-      logo_url: 'https://www.google.co.uk/imgres?iitter.com%2Fcirculareconomy&docid=LnflHf1c&uact=8',
+      logo_url: null,
       active: true
     }]
   };
@@ -123,17 +123,17 @@ test('Get all the active organisations, associated with a specific tag', functio
     orgs: [{
       id: 6,
       name: 'Asda',
-      logo_url: 'https://www.google.co.uk/imgres?iitter.com%2Fcirculareconomy&docid=LnflHf1c&uact=8',
+      logo_url: null,
       active: true
     },{
       id: 5,
       name: 'Co-op Group',
-      logo_url: 'https://www.google.co.uk/imgres?iitter.com%2Fcirculareconomy&docid=LnflHf1c&uact=8',
+      logo_url: null,
       active: true
     }, {
       id: 4,
       name: 'EMF',
-      logo_url: 'https://www.google.co.uk/imgres?iitter.com%2Fcirculareconomy&docid=LnflHf1c&uact=8',
+      logo_url: null,
       active: true
     }]
   };

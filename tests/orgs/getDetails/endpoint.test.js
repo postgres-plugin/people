@@ -50,7 +50,7 @@ test('get org id 2 details for profile view, orgs.getDetails', function (t) {
         {
           id: 2,
           name: "dwyl",
-          logo_url: "https://www.google.co.uk/imgres?iitter.com%2Fcirculareconomy&docid=LnflHf1c&uact=8",
+          logo_url: null,
           mission_statement: "Do What You Love!",
           active: true,
           tags: []

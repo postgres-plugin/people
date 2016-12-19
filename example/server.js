@@ -9,35 +9,29 @@ var tags = require('tags-system');
 var challenges = require('pg-challenges');
 
 // pg tables data
-var tagsData = require('./data/tags.json');
-var categoriesData = require('./data/categories.json');
-var peopleData = require('./data/people.json');
-var organisationsData = require('./data/organisations.json');
-var tagsOrgsData = require('./data/tags_organisations.json');
-var challengesData = require('./data/challenges.json');
-var tagsChallengesData = require('./data/tags_challenges.json');
+var data = require('ce100-mock-data');
 
 function init (config, callback) {
   var server = new Hapi.Server();
   var pool = new pg.Pool(config.pg);
   var optionsTags = {
     reset: true,
-    tags: tagsData,
-    categories: categoriesData,
+    tags: data.tags,
+    categories: data.categories,
     pool: pool
   };
   var optionsPeople = {
     pool: pool,
     reset: true,
-    people: peopleData,
-    organisations: organisationsData,
-    tags_organisations: tagsOrgsData
+    people: data.people,
+    organisations: data.organisations,
+    tags_organisations: data.tags_organisations
   };
   var optionsChallenges = {
     pool: pool,
     reset: true,
-    challenges: challengesData,
-    tags_challenges: tagsChallengesData
+    challenges: data.challenges,
+    tags_challenges: data.tags_challenges
   };
 
 
@@ -83,6 +77,7 @@ function init (config, callback) {
             path: '/people',
             handler: function (request, reply) {
               var activeNonAdmin = request.query.active === 'true';
+
               request.server.methods.pg.people.getAllPeople(activeNonAdmin, function (error, response) { // eslint-disable-line
                 reply(response);
               });

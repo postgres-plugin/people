@@ -3,7 +3,7 @@
 var test = require('tape');
 var init = require('../../../example/server.js');
 var config = require('../../../config/load-config.js');
-var people = require('../../../example/data/people.json');
+var people = require('ce100-mock-data').people;
 
 test('Get all the people', function (t) {
   init(config, function (err, server, pool) {
