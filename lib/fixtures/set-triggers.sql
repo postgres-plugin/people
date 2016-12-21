@@ -1,4 +1,7 @@
--- Create trigger
+-- Delete triggers
+DROP TRIGGER IF EXISTS toggleOrgUsers on organisations;
+
+-- Create procedures
 CREATE OR REPLACE FUNCTION toggleOrgUsers()
 RETURNS TRIGGER AS
 $BODY$
@@ -12,6 +15,7 @@ $BODY$
 $BODY$
 LANGUAGE plpgsql;
 
+-- Create triggers
 CREATE TRIGGER toggleOrgUsers
 AFTER
 UPDATE ON organisations
