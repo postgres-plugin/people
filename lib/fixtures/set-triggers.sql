@@ -20,5 +20,5 @@ CREATE TRIGGER toggleOrgUsers
 AFTER
 UPDATE ON organisations
 FOR EACH ROW
-WHEN (OLD.active IS DISTINCT FROM NEW.active)
+WHEN (OLD.active IS DISTINCT FROM NEW.active AND OLD.active = TRUE)
 EXECUTE PROCEDURE toggleOrgUsers();

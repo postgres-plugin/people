@@ -149,7 +149,7 @@ test('enable an inactive org with an active primary user', function (t) {
             );
             server.inject(userDetails(userId), function (res) {
               t.ok(
-                !res.result[0].active,
+                res.result[0].active,
                 'previously active user is not disabled'
               );
               t.end();
