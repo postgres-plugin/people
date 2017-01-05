@@ -23,7 +23,7 @@
   "homepage": "https://github.com/postgres-plugin/people#readme",
   "dependencies": {
     "boom": "^4.2.0",
-    "ce100-mock-data": "^1.0.4",
+    "ce100-mock-data": "^1.0.9",
     "env2": "^2.1.1",
     "hapi": "^15.2.0",
     "hoek": "^4.1.0",
