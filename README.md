@@ -146,6 +146,7 @@ returns an object of the following format:
 if org id is a legitimate organisation id, we return an empty array
 if org id is not recognised, we will return an Boom.notFound error.
 
+When an org is enabled/disabled, any associated users are also enabled/disabled.
 
 ### pg.organisations.edit(orgId, orgObj, cb)
 Where
