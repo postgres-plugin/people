@@ -158,9 +158,9 @@ if org id is not recognised, we will return an Boom.notFound error.
 
 ### pg.organisations.getActive(cb)
 ```js
-[ { name: 'Apple', id: 1, active_primary_user: null },
- { name: 'Asda', id: 6, active_primary_user: 8 },
- { name: 'Charcoal', id: 3, active_primary_user: 5 },
+[ { name: 'Apple', id: 1 },
+ { name: 'Asda', id: 6 },
+ { name: 'Charcoal', id: 3 },
 ...
 ]
 ```
