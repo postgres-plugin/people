@@ -79,6 +79,7 @@ function init (config, callback) {
               var activeNonAdmin = request.query.active === 'true';
 
               request.server.methods.pg.people.getAllPeople(activeNonAdmin, function (error, response) { // eslint-disable-line
+                Hoek.assert(!error, 'people.getAllPeople error');
                 reply(response);
               });
             }
@@ -88,6 +89,7 @@ function init (config, callback) {
             path: '/peopleGetById',
             handler: function (request, reply) {
               request.server.methods.pg.people.getBy('id', request.query.id, function (error, response) { // eslint-disable-line
+                Hoek.assert(!error, 'people.getById error');
                 reply(response);
               });
             }
@@ -100,6 +102,7 @@ function init (config, callback) {
               var value = request.query.value;
 
               request.server.methods.pg.people.getBy(columnName, value, function (error, response) { // eslint-disable-line
+                Hoek.assert(!error, 'people.getBy error');
                 reply(response);
               });
             }
@@ -152,7 +155,7 @@ function init (config, callback) {
               var id = request.query.id;
 
               request.server.methods.pg.people.toggleActive(id, function (error, response) { // eslint-disable-line
-                Hoek.assert(!error, 'people.edit error');
+                Hoek.assert(!error, 'people.toggleActive error');
                 reply(response);
               });
             }
@@ -162,6 +165,7 @@ function init (config, callback) {
             path: '/addOrgName/{name}',
             handler: function (request, reply) {
               request.server.methods.pg.organisations.addOrgName(request.params.name, function (error, response) { // eslint-disable-line
+                Hoek.assert(!error, 'orgs.addOrgName error');
                 reply('error' + error + 'response' + response);
               });
             }
@@ -242,7 +246,7 @@ function init (config, callback) {
                 if (error && error.output && error.output.statusCode === 404) {
                   return reply(error.output.payload.message).code(404);
                 }
-                Hoek.assert(!error, 'orgs.add error');
+                Hoek.assert(!error, 'orgs.toggleActive error');
                 reply(response);
               });
             }
