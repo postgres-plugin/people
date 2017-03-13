@@ -1,17 +1,17 @@
 -- Create table
 CREATE TABLE IF NOT EXISTS organisations (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(100) NOT NULL,
+  name TEXT NOT NULL,
   logo_url TEXT,
-  mission_statement VARCHAR(200),
+  mission_statement TEXT,
   active BOOLEAN NOT NULL
 );
 
 -- Create table
 CREATE TABLE IF NOT EXISTS people (
   id SERIAL PRIMARY KEY,
-  first_name VARCHAR(100) NOT NULL,
-  last_name VARCHAR(100) NOT NULL,
+  first_name VARCHAR(200) NOT NULL,
+  last_name VARCHAR(200) NOT NULL,
   user_type VARCHAR(10) NOT NULL CHECK (user_type IN ('admin', 'primary', 'secondary')),
   email VARCHAR(100) NOT NULL UNIQUE,
   phone VARCHAR(100),
