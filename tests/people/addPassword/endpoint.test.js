@@ -10,7 +10,7 @@ test('successsful update to password with account activated false', function (t)
 
     server.inject({ url: '/peopleAddPassword?id=8&password=Santaclause' }, function (res) {
 
-      var expected = [{ returning_user: false, org_id: 6 }];
+      var expected = [{ returning_user: false, org_id: 6, user_type: 'primary' }];
 
       t.deepEqual(res.result, expected, 'successful update to password returns org id');
       t.end();
@@ -28,7 +28,7 @@ test('successsful update to password with account activated true', function (t) 
 
     server.inject({ url: '/peopleAddPassword?id=3&password=Santaclause' }, function (res) {
 
-      var expected = [{ returning_user: true, org_id: 1 }];
+      var expected = [{ returning_user: true, org_id: 1, user_type: 'primary' }];
 
       t.deepEqual(res.result, expected, 'successful update to password if user has already activated an account still returns returns org id');
       t.end();
