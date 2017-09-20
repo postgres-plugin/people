@@ -8,7 +8,7 @@ test('successsful update to password with account activated false', function (t)
   init(config, function (err, server, pool) {
     t.ok(!err, 'error starting server: ' + err);
 
-    server.inject({ url: '/peopleAddPassword?id=8&password=Santaclause' }, function (res) {
+    server.inject({ url: '/peopleAddPassword?id=9&password=Santaclause' }, function (res) {
 
       var expected = [{ returning_user: false, org_id: 6, user_type: 'primary' }];
 
@@ -26,7 +26,7 @@ test('successsful update to password with account activated true', function (t) 
   init(config, function (err, server, pool) {
     t.ok(!err, 'error starting server: ' + err);
 
-    server.inject({ url: '/peopleAddPassword?id=3&password=Santaclause' }, function (res) {
+    server.inject({ url: '/peopleAddPassword?id=4&password=Santaclause' }, function (res) {
 
       var expected = [{ returning_user: true, org_id: 1, user_type: 'primary' }];
 

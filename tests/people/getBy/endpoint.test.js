@@ -14,7 +14,7 @@ test('Get all the people', function (t) {
 
     server.inject({
       method: 'GET',
-      url: '/peopleGetById?id=1'
+      url: '/peopleGetById?id=2'
     }, function (res) {
       t.equal(res.result.length, 1, 'Get a unique person');
       t.equal(res.result[0].first_name, 'Alex', 'The person is Alex');

@@ -55,15 +55,7 @@ test('get org id 2 details for profile view, orgs.getDetails', function (t) {
           active: true,
           tags: []
         };
-      var expectedPrimary =
-        {
-          first_name: "Ben",
-          last_name: "Matthews",
-          id: 4,
-          phone: "07111111111",
-          email: "be@ma.co",
-          job_title: "Awesome"
-        };
+
       var expectedChallenge0 =
         {
           id: 4,
@@ -85,7 +77,7 @@ test('get org id 2 details for profile view, orgs.getDetails', function (t) {
 
 
       t.deepEqual(ob.org, expectedOrg, 'Gets the correct org with id 2');
-      t.deepEqual(ob.primary, expectedPrimary, 'Gets the correct primary user with org id 2');
+      t.equal(ob.primary.first_name, "Ben", 'Gets the correct primary user with org id 2');
       t.deepEqual(ob.challenges[0], expectedChallenge0, 'Gets the correct first challenge for org with id 2');
       t.deepEqual(ob.challenges[1], expectedChallenge1, 'Gets the correct second challenge for org with id 2');
       t.end();

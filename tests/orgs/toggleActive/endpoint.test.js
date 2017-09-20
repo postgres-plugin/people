@@ -33,7 +33,7 @@ var allUsers = {
 // test active org with active primary user
 test('disable an active org with active primary user', function (t) {
   var orgId = 1;
-  var userId = 3;
+  var userId = 4;
   init(config, function (err, server, pool) {
     if (err) return t.fail('error initialising server');
 
