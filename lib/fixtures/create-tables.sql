@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS people (
   id SERIAL PRIMARY KEY,
   first_name VARCHAR(200) NOT NULL,
   last_name VARCHAR(200) NOT NULL,
-  user_type VARCHAR(10) NOT NULL CHECK (user_type IN ('admin', 'primary', 'secondary')),
+  user_type VARCHAR(10) NOT NULL CHECK (user_type IN ('admin', 'content-owner', 'primary', 'secondary')),
   email VARCHAR(100) NOT NULL UNIQUE,
   phone VARCHAR(100),
   password VARCHAR(100),
