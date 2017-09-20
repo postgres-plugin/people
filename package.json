@@ -1,6 +1,6 @@
 {
   "name": "pg-people",
-  "version": "0.0.31",
+  "version": "0.1.2",
   "description": "People database in postgres.",
   "main": "lib/index.js",
   "scripts": {
@@ -23,13 +23,13 @@
   "homepage": "https://github.com/postgres-plugin/people#readme",
   "dependencies": {
     "boom": "^4.2.0",
-    "ce100-mock-data": "^1.0.13",
+    "ce100-mock-data": "^1.1.1",
     "env2": "^2.1.1",
-    "hapi": "^15.2.0",
+    "hapi": "^16.6.0",
     "hoek": "^4.1.0",
     "istanbul": "^0.4.5",
     "pg": "^6.1.0",
-    "pg-challenges": "^2.0.4",
+    "pg-challenges": "^2.1.1",
     "pg-escape": "^0.2.0",
     "pg-helpers": "^1.0.0",
     "tags-system": "^1.1.2",
