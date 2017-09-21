@@ -16,7 +16,7 @@ test('Get all the people', function (t) {
       method: 'GET',
       url: '/people'
     }, function (res) {
-
+      t.ok(res.result[0].hasOwnProperty('org_id'));
       t.equal(res.result.length, people.length, 'Only returns active users');
       t.end();
       pool.end();
