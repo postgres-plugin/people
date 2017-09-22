@@ -250,6 +250,18 @@ function init (config, callback) {
                 reply(response);
               });
             }
+          },
+          {
+            method: 'GET',
+            path: '/orgsSearch',
+            handler: function (request, reply) {
+              var searchTerm = request.query.searchTerm;
+
+              request.server.methods.pg.organisations.orgsSearch(searchTerm, function (error, response) { // eslint-disable-line
+                Hoek.assert(!error, 'orgs.orgsSearch error');
+                reply(response);
+              });
+            }
           }
         ]);
 
