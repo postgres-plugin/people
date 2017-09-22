@@ -4,8 +4,8 @@ var test = require('tape');
 var init = require('../../../example/server.js');
 var config = require('../../../config/load-config.js');
 
-var activeUid = 4;
-var inactiveUid = 10;
+var activeUid = 3;
+var inactiveUid = 9;
 
 function toggleUser (uid) {
   return {

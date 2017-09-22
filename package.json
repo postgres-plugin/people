@@ -1,6 +1,6 @@
 {
   "name": "pg-people",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "People database in postgres.",
   "main": "lib/index.js",
   "scripts": {
@@ -23,7 +23,7 @@
   "homepage": "https://github.com/postgres-plugin/people#readme",
   "dependencies": {
     "boom": "^4.2.0",
-    "ce100-mock-data": "^1.1.1",
+    "ce100-mock-data": "^1.1.2",
     "env2": "^2.1.1",
     "hapi": "^16.6.0",
     "hoek": "^4.1.0",
