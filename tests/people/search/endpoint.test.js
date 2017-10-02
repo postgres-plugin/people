@@ -28,3 +28,14 @@ test('search for people containing searchTerm on job title', function (t) {
     });
   });
 });
+
+test('search for people belonging to an organisations where the name match the seach term', function (t) {
+  init(config, function (err, server, pool) {
+    server.inject({ url: '/peopleSearch?searchTerm=focus hub' }, function (res) {
+      t.equal(res.result.length, 2, 'focus hub has 2 people');
+      t.end();
+      pool.end();
+      server.stop();
+    });
+  });
+});
