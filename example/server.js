@@ -262,6 +262,18 @@ function init (config, callback) {
                 reply(response);
               });
             }
+          },
+          {
+            method: 'GET',
+            path: '/peopleSearch',
+            handler: function (request, reply) {
+              var searchTerm = request.query.searchTerm;
+
+              request.server.methods.pg.people.peopleSearch(searchTerm, function (error, response) { // eslint-disable-line
+                Hoek.assert(!error, 'orgs.orgsSearch error');
+                reply(response);
+              });
+            }
           }
         ]);
 
