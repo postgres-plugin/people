@@ -18,3 +18,15 @@ test('search for oganisations containing searchTerm', function (t) {
     });
   });
 });
+
+test('search for oganisations containing searchTerm on mission_statement', function (t) {
+  init(config, function (err, server, pool) {
+    server.inject({ url: '/orgsSearch?searchTerm=summer!' }, function (res) {
+      t.equal(res.result[0].org_name, 'Charcoal', 'Charcoal has been found by its mission_statement');
+
+      t.end();
+      pool.end();
+      server.stop();
+    });
+  });
+});
