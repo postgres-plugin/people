@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS people (
   job_title VARCHAR(80),
   last_login BIGINT,
   active BOOLEAN NOT NULL,
+  logo_url TEXT,
   account_activated BOOLEAN NOT NULL
 );
 
