@@ -265,6 +265,18 @@ function init (config, callback) {
           },
           {
             method: 'GET',
+            path: '/orgsGetById',
+            handler: function (request, reply) {
+              var id = request.query.id;
+
+              request.server.methods.pg.organisations.orgsGetById(id, function (error, response) { // eslint-disable-line
+                Hoek.assert(!error, 'orgs.orgsGetById error');
+                reply(response);
+              });
+            }
+          },
+          {
+            method: 'GET',
             path: '/peopleSearch',
             handler: function (request, reply) {
               var searchTerm = request.query.searchTerm;
