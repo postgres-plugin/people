@@ -4,7 +4,7 @@ var test = require('tape');
 var init = require('../../../example/server.js');
 var config = require('../../../config/load-config.js');
 
-test('Get organistaion by id', function (t) {
+test('Get tags linked to the org id 1', function (t) {
   init(config, function (err, server, pool) {
     if (err) {
       console.log('error initialise server', err);
