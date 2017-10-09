@@ -277,6 +277,18 @@ function init (config, callback) {
           },
           {
             method: 'GET',
+            path: '/orgsGetTags',
+            handler: function (request, reply) {
+              var id = request.query.id;
+
+              request.server.methods.pg.organisations.orgsGetTags(id, function (error, response) { // eslint-disable-line
+                Hoek.assert(!error, 'orgs.orgsGetTag error');
+                reply(response);
+              });
+            }
+          },
+          {
+            method: 'GET',
             path: '/peopleSearch',
             handler: function (request, reply) {
               var searchTerm = request.query.searchTerm;
