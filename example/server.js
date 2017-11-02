@@ -298,7 +298,19 @@ function init (config, callback) {
                 reply(response);
               });
             }
-          }
+          },
+          {
+            method: 'GET',
+            path: '/peopleGetByOrgId',
+            handler: function (request, reply) {
+              var orgId = request.query.orgId;
+
+              request.server.methods.pg.people.peopleGetByOrgId(orgId, function (error, response) { // eslint-disable-line
+                Hoek.assert(!error, 'people.peopleGetByOrgId error');
+                reply(response);
+              });
+            }
+          },
         ]);
 
         return server.start(function (errorStart) {
