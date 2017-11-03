@@ -311,6 +311,18 @@ function init (config, callback) {
               });
             }
           },
+          {
+            method: 'POST',
+            path: '/updateLastLogin',
+            handler: function (request, reply) {
+              var id = request.query.id;
+              var timestamp = request.query.timestamp
+              request.server.methods.pg.people.updateLastLogin(id, timestamp, function (error, response) { // eslint-disable-line
+                Hoek.assert(!error, 'people.toggleActive error');
+                reply(response);
+              });
+            }
+          }
         ]);
 
         return server.start(function (errorStart) {
