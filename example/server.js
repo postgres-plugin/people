@@ -318,7 +318,17 @@ function init (config, callback) {
               var id = request.query.id;
               var timestamp = request.query.timestamp
               request.server.methods.pg.people.updateLastLogin(id, timestamp, function (error, response) { // eslint-disable-line
-                Hoek.assert(!error, 'people.toggleActive error');
+                Hoek.assert(!error, 'people.updateLasLogin error');
+                reply(response);
+              });
+            }
+          },
+          {
+            method: 'GET',
+            path: '/orgsGetAll',
+            handler: function (request, reply) {
+              request.server.methods.pg.organisations.orgsGetAll(function (error, response) { // eslint-disable-line
+                Hoek.assert(!error, 'orgsGetAll error');
                 reply(response);
               });
             }
