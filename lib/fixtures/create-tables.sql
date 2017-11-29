@@ -21,7 +21,8 @@ CREATE TABLE IF NOT EXISTS people (
   last_login BIGINT,
   active BOOLEAN NOT NULL,
   logo_url TEXT,
-  account_activated BOOLEAN NOT NULL
+  account_activated BOOLEAN NOT NULL,
+  notification_email BOOLEAN NOT NULL DEFAULT true
 );
 
 CREATE TABLE IF NOT EXISTS tags_organisations (
