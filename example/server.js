@@ -76,9 +76,8 @@ function init (config, callback) {
             method: 'GET',
             path: '/people',
             handler: function (request, reply) {
-              var activeNonAdmin = request.query.active === 'true';
 
-              request.server.methods.pg.people.getAllPeople(activeNonAdmin, function (error, response) { // eslint-disable-line
+              request.server.methods.pg.people.getAllPeople(function (error, response) { // eslint-disable-line
                 Hoek.assert(!error, 'people.getAllPeople error');
                 reply(response);
               });
