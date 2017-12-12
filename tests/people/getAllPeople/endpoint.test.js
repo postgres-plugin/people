@@ -24,26 +24,3 @@ test('Get all the people', function (t) {
     });
   });
 });
-
-test('Get active only people', function (t) {
-  init(config, function (err, server, pool) {
-    if (err) {
-      console.log('error initialise server', err);
-      return t.fail();
-    }
-    var activeNonAdmins = people.filter(function (p) {
-      return p.active && p.user_type !== 'admin';
-    }).length;
-
-    server.inject({
-      method: 'GET',
-      url: '/people?active=true'
-    }, function (res) {
-
-      t.equal(res.result.length, activeNonAdmins, 'Only returns active users');
-      t.end();
-      pool.end();
-      server.stop();
-    });
-  });
-});
