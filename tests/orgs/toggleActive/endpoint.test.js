@@ -118,6 +118,37 @@ test('toggle an inactive org with no primary user', function (t) {
   });
 });
 
+// test put inactive org keep inactive user
+test('toggle an inactive org with no primary user', function (t) {
+  var orgId = 4;
+  var userId = 17;
+
+  init(config, function (err, server, pool) {
+    if (err) return t.fail('error initialising server');
+    server.inject(orgsToggleActive(orgId), function (res) {
+      t.deepEqual(
+        res.result,
+        [],
+        'successful disabling of org returns an empty array'
+      );
+      server.inject(orgDetails(orgId), function (res) {
+        t.ok(
+          !res.result.org.active,
+          'previously active org has been disabled'
+        );
+        server.inject(userDetails(userId), function (res) {
+          t.ok(
+            !res.result[0].active,
+            'previously inactive is still inactive'
+          );
+          t.end();
+          pool.end()
+          server.stop()
+        });
+      });
+    });
+  });
+});
 
 // test inactive org with active user
 test('enable an inactive org with an active primary user', function (t) {
