@@ -7,7 +7,7 @@ RETURNS TRIGGER AS
 $BODY$
   BEGIN
     UPDATE people
-    SET active = NOT people.active
+    SET active = false
     WHERE org_id = OLD.id;
 
     RETURN NEW;
