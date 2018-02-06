@@ -22,7 +22,9 @@ CREATE TABLE IF NOT EXISTS people (
   active BOOLEAN NOT NULL,
   logo_url TEXT,
   account_activated BOOLEAN NOT NULL,
-  notification_email BOOLEAN NOT NULL DEFAULT true
+  notification_email BOOLEAN NOT NULL DEFAULT true,
+  consent BOOLEAN NOT NULL DEFAULT false,
+  marketing BOOLEAN NOT NULL DEFAULT false
 );
 
 CREATE TABLE IF NOT EXISTS tags_organisations (
