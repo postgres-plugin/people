@@ -8,7 +8,9 @@ var update = {
   first_name: 'Sally',
   last_name: 'Robertson',
   job_title: 'Chocolatier',
-  phone: '07111111111'
+  phone: '07111111111',
+  marketing: false,
+  consent: false
 };
 
 function editProfile (id ) {
