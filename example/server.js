@@ -331,6 +331,28 @@ function init (config, callback) {
                 reply(response);
               });
             }
+          },
+          {
+            method: 'POST',
+            path: '/deleteUser',
+            handler: function (request, reply) {
+              var id = request.query.id;
+              request.server.methods.pg.people.deleteUser(id, function (error, response) { // eslint-disable-line
+                Hoek.assert(!error, 'deleteUser error');
+                reply(response);
+              });
+            }
+          },
+          {
+            method: 'POST',
+            path: '/deleteOrg',
+            handler: function (request, reply) {
+              var id = request.query.id;
+              request.server.methods.pg.organisations.deleteOrg(id, function (error, response) { // eslint-disable-line
+                Hoek.assert(!error, 'deleteOrg error');
+                reply(response);
+              });
+            }
           }
         ]);
 
