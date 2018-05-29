@@ -36,3 +36,8 @@ CREATE TABLE IF NOT EXISTS locations_organisations (
  locations_id INTEGER,
  organisations_id INTEGER REFERENCES organisations (id)
 );
+
+CREATE TABLE IF NOT EXISTS tags_people (
+ tags_id INTEGER,
+ person_id INTEGER REFERENCES people (id)
+);
