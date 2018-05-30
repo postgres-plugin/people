@@ -1,6 +1,6 @@
 {
   "name": "pg-people",
-  "version": "0.9.0",
+  "version": "0.9.6",
   "description": "People database in postgres.",
   "main": "lib/index.js",
   "scripts": {
@@ -30,7 +30,7 @@
     "istanbul": "^0.4.5",
     "pg": "^6.1.0",
     "pg-challenges": "^2.1.1",
-    "pg-escape": "^0.2.0",
+    "pg-escape": "https://github.com/postgres-plugin/pg-escape/archive/1.0.1.tar.gz",
     "pg-helpers": "^1.0.0",
     "tags-system": "^1.1.2",
     "tape": "^4.6.2"
