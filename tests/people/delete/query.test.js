@@ -11,7 +11,7 @@ var expectedQuery = [
   , 'FULL JOIN challenges'
   , 'ON challenges.creator_id = people.id'
   , 'FULL JOIN comments'
-  , 'ON comments.author_id = people.id'
+  , 'ON comments.author_id = people.id AND comments.active = true'
   , 'WHERE people.id = 3'
   , 'GROUP BY people.id'
   , 'HAVING COUNT(challenges) = 0'
